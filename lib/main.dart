@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:english_words/english_words.dart';
-import 'package:sqflite/sqflite.dart';
-import 'dart:io';
+
 import 'db_providers.dart';
 
 void main() => runApp(new MyApp());
@@ -16,15 +13,10 @@ class MyApp extends StatelessWidget {
 }
 
 class RandomWordsState extends State<RandomWords> {
-  final _suggestions = <WordPair>[];
   final _biggerFont = const TextStyle(fontSize: 18.0);
   TodoProvider todoProvider = new TodoProvider();
   Future _todoList;
 
-  Future _fetchTodos() async {
-    await todoProvider.open(tableTodo);
-    _todoList = await todoProvider.getAllTodos();
-  }
 
   @override
   void initState() {

@@ -23,6 +23,7 @@ dependencies:
   sqflite: any
   path_provider: any
   shared_preferences: any
+  uuid: any
 
 dev_dependencies:
   flutter_test:

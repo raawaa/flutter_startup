@@ -18,7 +18,6 @@ class TaskList extends StatelessWidget {
           itemBuilder: (BuildContext context, int i) {
             return new ListTile(
               onTap: () {
-                // Navigator.pushNamed(context, '/detail');
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -26,15 +25,6 @@ class TaskList extends StatelessWidget {
               },
               leading: new Icon(Icons.check_box_outline_blank),
               title: new Text(taskList[i].title),
-              // trailing: FlatButton(
-              //     onPressed: () {
-              //       // Navigator.pushNamed(context, '/detail');
-              //       Navigator.push(
-              //           context,
-              //           MaterialPageRoute(
-              //               builder: (context) => Detail(taskList[i])));
-              //     },
-              //     child: Icon(Icons.details)),
             );
           }),
       floatingActionButton: new FloatingActionButton(

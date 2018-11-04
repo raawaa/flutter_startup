@@ -4,7 +4,6 @@ import 'models/appstate.dart';
 import 'models/task.dart';
 
 class CreateTask extends StatefulWidget {
-//  static final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final _titleController = TextEditingController();
   final _contentController = TextEditingController();
 
@@ -16,11 +15,9 @@ class _CreateTaskState extends State<CreateTask> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-//      key: CreateTask.scaffoldKey,
       appBar: new AppBar(title: new Text('create task')),
       body: Builder(builder: (context) {
         return Form(
-//          key: _formKey,
             child: new ListView(
           children: <Widget>[
             new TextFormField(

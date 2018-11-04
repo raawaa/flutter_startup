@@ -18,7 +18,6 @@ class _AppState extends State<App> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     taskList.add(new Task(title: 'taskA', content: 'todo taskA'));
     taskList.add(new Task(title: 'taskB', content: 'todo taskB'));

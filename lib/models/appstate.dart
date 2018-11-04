@@ -31,7 +31,7 @@ class _AppState extends State<App> {
         appstate: this,
         child: MaterialApp(routes: {
           '/detail': (context) => Detail(null),
-          '/create': (context) => CreateTask()
+          '/create': (context) => CreateTaskPage()
         }, home: TaskList()));
   }
 }

@@ -13,8 +13,23 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   List<Task> taskList = [];
-
+  ListDisplayMode displayMode;
   void addTask(Task task) => taskList.add(task);
+  void toggleViewMode() {
+    switch (displayMode) {
+      case ListDisplayMode.list:
+        setState(() {
+          displayMode = ListDisplayMode.card;
+        });
+        break;
+      case ListDisplayMode.card:
+        setState(() {
+          displayMode = ListDisplayMode.list;
+        });
+        break;
+      default:
+    }
+  }
 
   @override
   void initState() {
@@ -23,11 +38,12 @@ class _AppState extends State<App> {
     taskList.add(new Task(title: 'taskB', content: 'todo taskB'));
     taskList.add(new Task(title: 'taskC', content: 'todo taskC'));
     taskList.add(new Task(title: 'taskD', content: 'todo taskD'));
+    displayMode = ListDisplayMode.list;
   }
 
   @override
   Widget build(BuildContext context) {
-    return AppData(
+    return AppStateProvider(
         appstate: this,
         child: MaterialApp(routes: {
           '/detail': (context) => Detail(null),
@@ -36,14 +52,14 @@ class _AppState extends State<App> {
   }
 }
 
-class AppData extends InheritedWidget {
+class AppStateProvider extends InheritedWidget {
   final _AppState appstate;
 
-  AppData({@required Widget child, @required this.appstate, Key key})
+  AppStateProvider({@required Widget child, @required this.appstate, Key key})
       : super(key: key, child: child);
 
-  static AppData of(BuildContext context) {
-    return context.inheritFromWidgetOfExactType(AppData);
+  static AppStateProvider of(BuildContext context) {
+    return context.inheritFromWidgetOfExactType(AppStateProvider);
   }
 
   @override
@@ -51,3 +67,5 @@ class AppData extends InheritedWidget {
     return true;
   }
 }
+
+enum ListDisplayMode { list, card }

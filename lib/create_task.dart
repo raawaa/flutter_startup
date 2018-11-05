@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'models/appstate.dart';
+import 'models/app_container.dart';
 import 'models/task.dart';
 
 class CreateTaskPage extends StatelessWidget {
@@ -41,7 +41,7 @@ class _CreateTaskFormState extends State<CreateTaskForm> {
           child: Text('提交'),
           onPressed: () {
             print("task-title: " + widget._titleController.text);
-            AppData.of(context).appstate.addTask(Task(
+            AppStateProvider.of(context).appstate.addTask(Task(
                 title: widget._titleController.text,
                 content: widget._contentController.text));
             Scaffold.of(context).showSnackBar(

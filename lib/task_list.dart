@@ -40,7 +40,7 @@ class TaskList extends StatelessWidget {
 }
 
 class ListBody extends StatelessWidget {
-  List<Task> taskList;
+  final List<Task> taskList;
 
   final ListDisplayMode displayMode;
   ListBody({this.taskList,this.displayMode});

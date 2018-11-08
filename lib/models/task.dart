@@ -1,21 +1,21 @@
 import 'package:uuid/uuid.dart';
 
 class Task {
-  String _id;
+  int id;
   String title;
   String content;
 
 
   Task({this.title, this.content}) {
-    _id = new Uuid().v4();
+    // id = new Uuid().v4();
   }
 
   Map<String, dynamic> toMap() {
-    return {'id': _id, 'title': title, 'content': content};
+    return {'id': id, 'title': title, 'content': content};
   }
 
   Task.fromMap(Map<String, dynamic> map) {
-    _id = map['id'];
+    id = map['id'];
     title = map['title'];
     content = map['content'];
   }

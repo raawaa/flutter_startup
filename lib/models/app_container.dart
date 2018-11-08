@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import '../create_task.dart';
-import '../detail.dart';
-import '../task_list.dart';
-import 'task.dart';
+import 'package:flutter_startup/create_task.dart';
+import 'package:flutter_startup/detail.dart';
+import 'package:flutter_startup/models/task.dart';
+import 'package:flutter_startup/task_list.dart';
+import 'package:flutter_startup/utils/database_helper.dart';
 
 class App extends StatefulWidget {
+  final _dbHelper = new DatabaseHelper();
   // This widget is the root of your application.
   @override
   _AppState createState() => _AppState();
@@ -14,7 +16,7 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   List<Task> taskList = [];
   ListDisplayMode displayMode;
-  void addTask(Task task) => taskList.add(task);
+  // void addTask(Task task) => taskList.add(task);
   void toggleViewMode() {
     switch (displayMode) {
       case ListDisplayMode.list:
@@ -31,13 +33,28 @@ class _AppState extends State<App> {
     }
   }
 
+  Future<void> updateTaskList() async {
+    widget._dbHelper.getTasks().then((res) {
+      setState(() {
+        taskList = res;
+      });
+    });
+  }
+
   @override
   void initState() {
     super.initState();
-    taskList.add(new Task(title: 'taskA', content: 'todo taskA'));
-    taskList.add(new Task(title: 'taskB', content: 'todo taskB'));
-    taskList.add(new Task(title: 'taskC', content: 'todo taskC'));
-    taskList.add(new Task(title: 'taskD', content: 'todo taskD'));
+    // taskList.add(new Task(title: 'taskA', content: 'todo taskA'));
+    // taskList.add(new Task(title: 'taskB', content: 'todo taskB'));
+    // taskList.add(new Task(title: 'taskC', content: 'todo taskC'));
+    // taskList.add(new Task(title: 'taskD', content: 'todo taskD'));
+    var dbclient = widget._dbHelper;
+    // taskList = await dbclient.getTasks();
+
+    // TODO: then statement excute after initState!!?
+    dbclient.getTasks().then((v) {
+      taskList = v;
+    });
     displayMode = ListDisplayMode.list;
   }
 
